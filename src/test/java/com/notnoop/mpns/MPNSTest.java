@@ -39,19 +39,19 @@ import static org.hamcrest.CoreMatchers.*;
  */
 public class MPNSTest {
 
-    @Test
-    public void testInstances() {
-        assertThat(MPNS.newNotification(), is(MpnsNotificationBuilder.class));
-        assertThat(MPNS.newService(), is(MpnsServiceBuilder.class));
-    }
+	@Test
+	public void testInstances() {
+		assertThat(MPNS.newNotification(), is(MpnsNotificationBuilder.class));
+		assertThat(MPNS.newService(), is(MpnsServiceBuilder.class));
+	}
 
-    @Test
-    public void notificationShouldGetNewInstances() {
-        assertNotSame(MPNS.newNotification(), MPNS.newNotification());
-    }
+	@Test
+	public void notificationShouldGetNewInstances() {
+		assertNotSame(MPNS.newNotification(), MPNS.newNotification());
+	}
 
-    @Test
-    public void newServiceGetNewInstances() {
-        assertNotSame(MPNS.newService(), MPNS.newService());
-    }
+	@Test
+	public void newServiceGetNewInstances() {
+		assertNotSame(MPNS.newService(), MPNS.newService());
+	}
 }

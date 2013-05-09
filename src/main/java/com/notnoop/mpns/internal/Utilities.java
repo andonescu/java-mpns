@@ -31,6 +31,7 @@
 package com.notnoop.mpns.internal;
 
 import java.io.UnsupportedEncodingException;
+import java.net.URI;
 
 import org.apache.http.Header;
 import org.apache.http.HttpResponse;
@@ -129,14 +130,14 @@ public final class Utilities {
         return null;
     }
 
-    public static void fireDelegate(MpnsNotification message, HttpResponse response, MpnsDelegate delegate) {
+    public static void fireDelegate(MpnsNotification message, HttpResponse response, MpnsDelegate delegate, URI uri) {
         if (delegate != null) {
             MpnsResponse r = Utilities.logicalResponseFor(response);
 
             if (r.isSuccessful()) {
-                delegate.messageSent(message, r);
+                delegate.messageSent(message, r, uri);
             } else {
-                delegate.messageFailed(message, r);
+                delegate.messageFailed(message, r, uri);
             }
         }
     }

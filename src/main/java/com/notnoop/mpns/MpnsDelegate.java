@@ -30,7 +30,10 @@
  */
 package com.notnoop.mpns;
 
+import java.net.URI;
+
 public interface MpnsDelegate {
-    public void messageSent(MpnsNotification message, MpnsResponse response);
-    public void messageFailed(MpnsNotification message, MpnsResponse response);
+	public void messageSent(MpnsNotification message, MpnsResponse response, URI uri);
+
+	public void messageFailed(MpnsNotification message, MpnsResponse response, URI uri);
 }
