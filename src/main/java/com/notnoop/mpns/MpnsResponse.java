@@ -34,8 +34,8 @@ package com.notnoop.mpns;
  * Represents the logical response of MpnsService
  * 
  * for more info look for this
- * http://msdn.microsoft.com/en-us/library/windowsphone/develop/ff941100
- * %28v=vs.105%29.aspx
+ * http://msdn.microsoft.com/en-us/library/windowsphone
+ * /develop/ff941100%28v=vs.105%29.aspx
  */
 public enum MpnsResponse {
 	/*
@@ -47,7 +47,7 @@ public enum MpnsResponse {
 	 * The notification request was accepted and queued for delivery. However,
 	 * the device is temporarily disconnected.
 	 */
-	QUEUED(200, "Received", "Temporarily Disconnected", "Active", true, false),
+	QUEUED(200, "Received", "TempDisconnected", "Active", true, false),
 
 	/**
 	 * Queue overflow. The web service should re-send the notification later. A

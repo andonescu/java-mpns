@@ -3,7 +3,7 @@
   <groupId>com.notnoop.mpns</groupId>
   <artifactId>mpns</artifactId>
   <name>Java Microsoft Push Notification Service Library</name>
-  <version>0.0.1</version>
+  <version>0.0.3</version>
 
     <!-- Inherit the Sonatype OSS deployment configuration -->
     <!--
@@ -29,7 +29,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.3.2</version>
+                <version>2.3.1</version>
                 <configuration>
                     <source>1.5</source>
                     <target>1.5</target>
@@ -43,11 +43,11 @@
                     </descriptorRefs>
                 </configuration>
             </plugin>
-            <plugin>
+           <!--  <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-site-plugin</artifactId>
                 <version>3.0-beta-3</version>
-            </plugin>
+            </plugin> -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-release-plugin</artifactId>
@@ -181,7 +181,7 @@
         </license>
     </licenses>
 
-    <reporting>
+    <!-- <reporting>
       <plugins>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -207,16 +207,16 @@
           <version>2.3.1</version>
         </plugin>
 
-        <!--
+        
           <plugin>
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>findbugs-maven-plugin</artifactId>
             <version>2.0.1</version>
           </plugin>
-          -->
+         
 
       </plugins>
-    </reporting>
+    </reporting> -->
 
     <issueManagement>
         <system>Github</system>
