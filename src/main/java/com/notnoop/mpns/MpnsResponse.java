@@ -115,7 +115,13 @@ public enum MpnsResponse {
 	 * service should re-send the notification later. A best practice is to use
 	 * an exponential backoff algorithm in minute increments.
 	 */
-	SERVICE_UNAVAILABLE(503, null, null, null, false, true);
+	SERVICE_UNAVAILABLE(503, null, null, null, false, true),
+
+	/**
+	 * When MPNS finds an exception will use this response to be stored in
+	 * database
+	 */
+	EXCEPTION(888, null, null, null, false, true);
 
 	// // Response
 	// Code,NotificationStatus,DeviceConnectionStatus,SubscriptionStatus,Comments

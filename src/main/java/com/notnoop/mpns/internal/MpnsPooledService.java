@@ -42,36 +42,44 @@ import com.notnoop.mpns.MpnsNotification;
 import com.notnoop.mpns.MpnsService;
 
 public class MpnsPooledService extends AbstractMpnsService implements MpnsService {
-    private final HttpClient httpClient;
-    private final ExecutorService executor;
-    private final MpnsDelegate delegate;
+	private final HttpClient httpClient;
+	private final ExecutorService executor;
+	private final MpnsDelegate delegate;
 
-    public MpnsPooledService(HttpClient httpClient, ExecutorService executor, MpnsDelegate delegate) {
-        this.httpClient = httpClient;
-        this.executor = executor;
-        this.delegate = delegate;
-    }
+	public MpnsPooledService(HttpClient httpClient, ExecutorService executor, MpnsDelegate delegate) {
+		this.httpClient = httpClient;
+		this.executor = executor;
+		this.delegate = delegate;
+	}
 
-    @Override
-    protected void push(final HttpPost request, final MpnsNotification message) {
-        executor.execute(new Runnable() {
-            public void run() {
-                try {
-                    HttpResponse response = httpClient.execute(request);
-                    Utilities.fireDelegate(message, response, delegate, request.getURI());
-                    EntityUtils.consume(response.getEntity());
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-            }
-        });
-    }
+	@Override
+	protected void push(final HttpPost request, final MpnsNotification message) {
+		executor.execute(new Runnable() {
+			public void run() {
+				try {
+					HttpResponse response = httpClient.execute(request);
+					Utilities.fireDelegate(message, response, delegate, request.getURI());
+					EntityUtils.consume(response.getEntity());
+				} catch (Exception e) {
+					Utilities.notifyException(message, delegate, request.getURI(), getRootCause(e).getMessage());
+					throw new RuntimeException(e);
+				}
+			}
+		});
+	}
 
-    @Override
-    public void stop() {
-        super.stop();
-        this.httpClient.getConnectionManager().shutdown();
-        this.executor.shutdown();
-    }
+	@Override
+	public void stop() {
+		super.stop();
+		this.httpClient.getConnectionManager().shutdown();
+		this.executor.shutdown();
+	}
+
+	public static Throwable getRootCause(Throwable throwable) {
+		if (throwable.getCause() != null)
+			return getRootCause(throwable.getCause());
+
+		return throwable;
+	}
 
 }
